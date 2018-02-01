@@ -1,3 +1,14 @@
+html, body { 
+  min-height: 100%; 
+}
+body {
+  background: #92c7d6;
+  background-image: -webkit-radial-gradient(top, circle cover, #97d0e1, #427388 80%);
+  background-image: -moz-radial-gradient(top, circle cover, #97d0e1, #427388 80%);
+  background-image: -o-radial-gradient(top, circle cover, #97d0e1, #427388 80%);
+  background-image: radial-gradient(top, circle cover, #97d0e1, #427388 80%);
+}
+
 .App {
   text-align: center;
 }
@@ -43,6 +54,7 @@
   font-size: 1em;
   margin: 10px;
   padding: 10px;
+  min-width: 40%;
 }
 
 #chatwindow {
@@ -64,4 +76,10 @@
   min-width: 3em;
   padding: 15px;
   margin: 10px;
+}
+
+.sidebyside {
+  display : flex;
+  justify-content: center;
+
 }
