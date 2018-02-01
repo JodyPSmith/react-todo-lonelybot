@@ -52,8 +52,6 @@ class App extends Component {
 
 }
 
-
-
 class Chatbot extends Component {
   constructor() {
     super();
