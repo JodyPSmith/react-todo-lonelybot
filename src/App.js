@@ -37,10 +37,11 @@ class App extends Component {
               <ul>
                 <li>Ask "What's the time"</li>
                 <li>Say ""bye", "goodbye" or "chow"</li>
-                <li>try "tell me a joke" or "make me laugh"</li>
+                <li>Try "tell me a joke" or "make me laugh"</li>
+                <li>Be careful, Fredroideric is very Canadian</li>
               </ul>
             </div>
-            <div className="sidebyside"> <Chatbot botName="Droidella" name={this.state.name} /> <Chatbot botName="Fredroideric" name={this.state.name} canadian={true} /></div>
+            <div className="sidebyside"> <Chatbot botName="Droidella" name={this.state.name} /> <Chatbot botName="Fredroideric" name={this.state.name} trait={"canadian"} /></div>
           </div>
         }
 
@@ -61,6 +62,7 @@ class Chatbot extends Component {
     this.wantstime = false;
     this.saidGoodbye = false;
     this.tellMeAJoke = false;
+    this.traitTxt = "";
     this.num = 1;
 
   }
@@ -68,8 +70,10 @@ class Chatbot extends Component {
   componentDidMount = () => {
     this.initHello();
     this.name = this.props.name;
-    this.canadian = this.props.canadian;
+    this.trait = this.props.trait;
     console.log(this.props);
+    console.log(this.trait);
+    
   }
 
   addMessage = () => {
@@ -97,6 +101,9 @@ class Chatbot extends Component {
     var nameNagging = ["You Should enter your name before we begin", "So what's your name", "what do they call you"]
     var responses = ["tell me more", "you don't say", "I was just thinking that", "huh huh", "please go on...", "GTFO!", "I'm not that sort of girl", "Did I mention I used to be a gymnast", "you should see what I can do with a golf ball and a hose pipe"];
     var goodbyes = ["don't let the door hit you on the way out", "I was bored with you anyway", "Oh, I didn't realise you were still there", "fine, I'll go back to talking to my cat", "See you later, have a good night", "But I haven't told you about my rash yet... OK, fine later."];
+    var canadian = [" eh", " tabernac", " oestee", "", " Oh and did I tell you how much I love Treaudeau", " and imagine adding maple syrup to that, eh"];
+    
+    (this.props.trait === 'canadian' ? this.traitTxt = canadian[Math.floor(Math.random() * canadian.length)] : this.traitTxt = "");
 
     if (this.name === "Enter Name : ") {
       this.num = Math.floor(Math.random() * nameNagging.length);
@@ -107,16 +114,17 @@ class Chatbot extends Component {
       this.wantstime = false;
     } else if (this.saidGoodbye === true) {
       this.num = Math.floor(Math.random() * goodbyes.length);
-      this.setState({ chat: this.state.chat.concat({ text: goodbyes[this.num] + " " + this.name, time: Date.now(), name: this.props.botName }) });
+      this.setState({ chat: this.state.chat.concat({ text: goodbyes[this.num] + " " + this.name + this.traitTxt, time: Date.now(), name: this.props.botName }) });
       this.saidGoodbye = false;
     } else if (this.tellMeAJoke === true) {
       var joke = getRandomJoke();
       console.log(joke);
-      this.setState({ chat: this.state.chat.concat({ text: joke.body, time: Date.now(), name: this.props.botName }) });
+      this.setState({ chat: this.state.chat.concat({ text: joke.body + this.traitTxt, time: Date.now(), name: this.props.botName }) });
       this.tellMeAJoke = false;
     } else {
       this.num = Math.floor(Math.random() * responses.length);
-      this.setState({ chat: this.state.chat.concat({ text: responses[this.num], time: Date.now(), name: this.props.botName }) });
+      
+      this.setState({ chat: this.state.chat.concat({ text: responses[this.num] + this.traitTxt, time: Date.now(), name: this.props.botName }) });
     }
   }
 
