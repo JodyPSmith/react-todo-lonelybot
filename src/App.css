@@ -83,3 +83,11 @@ body {
   justify-content: center;
 
 }
+
+.chatter {
+  color: azure;
+  font-size: 1em;
+  margin: 10px;
+  padding: 10px;
+  min-width: 40%;
+}

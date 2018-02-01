@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-
-// to fix, need to import one liner jokes to make her funny, need to submit text on enter, 
+import oneLinerJoke,{getRandomJoke} from 'one-liner-joke';
+// var oneLinerJoke = require('one-liner-joke'); this converts to the above
+// to fix, need to import one liner jokes to make her funny, DONE!!
+// need to submit text on enter, 
 // need to pass name somehow in a way that doesn't hide input first, make fredroideric very canadian with Eh and tabernac etc
-
-//LonelyBot
+// send a pic? would be very cool
+// LonelyBot
 
 // App asks for name before showing chat since 
 class App extends Component {
@@ -38,7 +40,7 @@ class App extends Component {
                 <li>try "tell me a joke" or "make me laugh"</li>
               </ul>
             </div>
-            <div className="sidebyside"> <Chatbot botName="Droidella" name={this.state.name} /> <Chatbot botName="Fredroideric" name={this.state.name} /></div>
+            <div className="sidebyside"> <Chatbot botName="Droidella" name={this.state.name} /> <Chatbot botName="Fredroideric" name={this.state.name} canadian={true} /></div>
           </div>
         }
 
@@ -66,6 +68,7 @@ class Chatbot extends Component {
   componentDidMount = () => {
     this.initHello();
     this.name = this.props.name;
+    this.canadian = this.props.canadian;
     console.log(this.props);
   }
 
@@ -107,9 +110,9 @@ class Chatbot extends Component {
       this.setState({ chat: this.state.chat.concat({ text: goodbyes[this.num] + " " + this.name, time: Date.now(), name: this.props.botName }) });
       this.saidGoodbye = false;
     } else if (this.tellMeAJoke === true) {
-      //var joke = oneLinerJoke.getRandomJoke();
-      //console.log(joke);
-      this.setState({ chat: this.state.chat.concat({ text: "Knock, fricken, Knock..." + this.name, time: Date.now(), name: this.props.botName }) });
+      var joke = getRandomJoke();
+      console.log(joke);
+      this.setState({ chat: this.state.chat.concat({ text: joke.body, time: Date.now(), name: this.props.botName }) });
       this.tellMeAJoke = false;
     } else {
       this.num = Math.floor(Math.random() * responses.length);
@@ -129,7 +132,8 @@ class Chatbot extends Component {
           <button className="buttons" onClick={this.addMessage}>Send</button>
           <button className="buttons" onClick={this.cleanHouse}>Clear Chat</button>
         </div>
-        <div className="regDiv">
+        <div className="chatter">
+        <h2>You are talking to {this.props.botName}</h2>
           {this.state.chat.map((x) => <li id="list"> {x.name + " : " + x.text} </li>)}
         </div>
       </div>
