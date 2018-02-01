@@ -69,11 +69,11 @@ body {
 }
 
 .buttons {
-  background-color: lightgreen;
+  background-color: #12323a;
   color : white;
-  border : none;
+  border : solid;
   border-radius : 25%;
-  min-width: 3em;
+  width: 10em;
   padding: 15px;
   margin: 10px;
 }
