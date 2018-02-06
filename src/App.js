@@ -27,6 +27,7 @@ class App extends Component {
 
         {this.state.name === "Enter Name : " ?
           <div id="chatwindow">
+          Enter your name to Begin..<br/>
             <input ref={(name) => { this.nameBox = name }} placeholder="enter your name here.." />
             <button className="buttons" onClick={this.addName}  >Apply</button>
           </div> :
@@ -34,12 +35,12 @@ class App extends Component {
             <div className="regDiv">
               <h1>Welcome To Sassy Droid chat {this.state.name} </h1>
               <h2>Things to try</h2>
-              <ul>
-                <li>Ask "What's the time"</li>
-                <li>Say ""bye", "goodbye" or "chow"</li>
-                <li>Try "tell me a joke" or "make me laugh"</li>
-                <li>Be careful, Fredroideric is very Canadian</li>
-              </ul>
+              
+                Ask "What's the time"<br/>
+                Say ""bye", "goodbye" or "chow"<br/>
+                Try "tell me a joke" or "make me laugh" (be warned, they are mostly bad or offensive)<br/>
+                Be careful, Fredroideric is very Canadian<br/>
+              
             </div>
             <div className="sidebyside"> <Chatbot botName="Droidella" name={this.state.name} /> <Chatbot botName="Fredroideric" name={this.state.name} trait={"canadian"} /></div>
           </div>
@@ -99,7 +100,7 @@ class Chatbot extends Component {
     var nameNagging = ["You Should enter your name before we begin", "So what's your name", "what do they call you"]
     var responses = ["tell me more", "you don't say", "I was just thinking that", "huh huh", "please go on...", "GTFO!", "I'm not that sort of girl", "Did I mention I used to be a gymnast", "you should see what I can do with a golf ball and a hose pipe"];
     var goodbyes = ["don't let the door hit you on the way out", "I was bored with you anyway", "Oh, I didn't realise you were still there", "fine, I'll go back to talking to my cat", "See you later, have a good night", "But I haven't told you about my rash yet... OK, fine later."];
-    var canadian = [" eh", " tabernac", " oestee", "", " Oh and did I tell you how much I love Treaudeau", " and imagine adding maple syrup to that, eh"];
+    var canadian = [" eh", " tabernac", " osti", "", " Oh and did I tell you how much I love Treaudeau", " and imagine adding maple syrup to that, eh", " osti tabernac", " câlice"];
     
     (this.props.trait === 'canadian' ? this.traitTxt = canadian[Math.floor(Math.random() * canadian.length)] : this.traitTxt = "");
 

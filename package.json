@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "express": "^4.16.2",
     "gh-pages": "^1.1.0",
     "one-liner-joke": "^1.0.0",
     "react": "^16.2.0",
@@ -14,7 +15,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "homepage": "https://jodypsmith.github.io/react-todo-lonelybot/",
-    "deploy" : "npm run build&&gh-pages -d build"
+    "homepage": "./build/",
+    "deploy": "npm run build&&gh-pages -d build"
+    
   }
 }
